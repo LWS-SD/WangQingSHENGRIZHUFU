@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f2e9">
+<title>祝晴生辰，特作此页</title>
+<!-- 在线楷体：霞鹜文楷；加载不到自动退系统楷体。想彻底离线，删掉下一行 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont/style.css">
+<style>
+:root{
+  --paper:#f6f2e9; --ink:#23262b; --ink2:#43494f;
+  --muted:#8d8f92; --line:rgba(74,84,92,.24); --line2:rgba(74,84,92,.44);
+  --gold:#b4944f; --seal:#9e2f28;
+  --font:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi","楷体","Songti SC","Noto Serif SC",serif;
+  --latin:"Iowan Old Style","Palatino",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.95;
+  letter-spacing:.02em; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  background-color:#f6f2e9;
+  background-image:repeating-linear-gradient(0deg, rgba(120,108,86,.032) 0 1px, transparent 1px 6px);
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 58% at 50% 0%, rgba(255,255,255,.55), rgba(255,255,255,0) 62%)}
+.hills{position:fixed;left:0;right:0;bottom:0;width:100%;height:170px;pointer-events:none;z-index:0}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:2}
+.petal{position:absolute;top:-6vh;display:block;background:radial-gradient(circle at 30% 30%,#e9d9ac,#d9c084);border-radius:62% 38% 58% 42%/48% 58% 42% 52%;opacity:.38;animation:fall linear infinite}
+@keyframes fall{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(var(--dx),118vh,0) rotate(300deg)}}
+.spark{position:fixed;width:26px;height:26px;border:1px solid rgba(180,148,79,.5);border-radius:50%;pointer-events:none;z-index:60;transform:translate(-50%,-50%)}
+
+main{position:relative;z-index:1;max-width:680px;margin:22px auto 44px;padding:34px 14px 44px;
+  border:1px solid var(--line);background:rgba(255,255,255,.26)}
+main::after{content:"";position:absolute;inset:7px;border:1px solid rgba(74,84,92,.10);pointer-events:none}
+
+/* 页首 */
+.topline{text-align:center;font-size:15px;letter-spacing:.5em;text-indent:.5em;color:#3c4147;margin:4px 0 0}
+.handle{text-align:center;font-family:var(--latin);font-size:11px;letter-spacing:.4em;color:var(--muted);margin:12px 0 0}
+.maintitle{display:flex;flex-direction:row-reverse;justify-content:center;gap:24px;margin:34px 0 12px;font-weight:400}
+.mtcol{writing-mode:vertical-rl;font-size:33px;letter-spacing:.22em;color:#20242a}
+.dates{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.32em;text-indent:.32em;margin:0 0 30px}
+.ch{display:inline-block;opacity:0;animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* 卷 */
+.cards{display:grid;gap:20px}
+.vol{border:1px solid var(--line);background:#fbf9f3}
+.vol-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;width:100%;
+  background:none;border:0;padding:16px 14px;font-family:inherit;color:inherit;cursor:pointer;
+  text-align:left;-webkit-tap-highlight-color:transparent}
+.ctoggle{writing-mode:vertical-rl;font-size:11px;letter-spacing:.34em;color:var(--muted);
+  border:1px solid var(--line);padding:9px 4px}
+.cgroup{display:flex;flex-direction:row-reverse;gap:14px;align-items:flex-start;margin-left:auto}
+.vtitle{writing-mode:vertical-rl;font-size:21px;letter-spacing:.26em;line-height:1;color:var(--ink)}
+.vsub{writing-mode:vertical-rl;font-size:11px;letter-spacing:.18em;line-height:1.15;color:var(--muted)}
+.fold-body{max-height:0;overflow:hidden;transition:max-height .85s cubic-bezier(.22,.61,.36,1)}
+.fold-inner{padding:0 12px 18px}
+
+/* 段签与竖栏 */
+.pbar{display:flex;align-items:center;gap:12px;margin:18px 0 8px}
+.pbar::before{content:"";height:1px;flex:1;background:var(--line)}
+.pbar span{font-size:11.5px;letter-spacing:.3em;color:var(--muted)}
+.vpart{
+  writing-mode:vertical-rl; height:min(62vh,460px);
+  overflow-x:auto; overflow-y:hidden; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+  padding:12px 10px; border:1px solid var(--line); background-color:#fcfaf4;
+  background-image:repeating-linear-gradient(90deg, rgba(74,84,92,.09) 0 1px, transparent 1px var(--pitch,26px));
+  box-shadow:inset 10px 0 18px -14px rgba(60,70,80,.30), inset -10px 0 18px -14px rgba(60,70,80,.18);
+  font-size:16px; letter-spacing:.01em; line-height:1.62; text-align:justify;
+}
+.vpart::-webkit-scrollbar{display:none}
+.vpart{scrollbar-width:none}
+.vpart p{margin:0;opacity:0;transition:opacity 1.1s ease}
+.vpart p + p{margin-left:1.6em}
+.vpart .pre{color:#4d545a}
+.vpart .song{color:#333941}
+.vol.open .vpart p{opacity:1}
+.vol.open .vpart p:nth-child(1){transition-delay:.10s}
+.vol.open .vpart p:nth-child(2){transition-delay:.30s}
+.vol.open .vpart p:nth-child(3){transition-delay:.50s}
+
+/* 标题行 */
+.sec{display:flex;align-items:center;gap:18px;justify-content:center;margin:48px 0 12px}
+.sec::before,.sec::after{content:"";height:1px;flex:1;background:var(--line)}
+.sec span{font-size:15px;letter-spacing:.6em;text-indent:.6em;color:#3c4147}
+.hint{text-align:center;font-size:11.5px;color:var(--muted);letter-spacing:.24em;text-indent:.24em;margin:12px 0 0}
+
+/* 五愿 */
+.wish{border-top:1px solid var(--line)}
+.wish:last-child{border-bottom:1px solid var(--line)}
+.wish-head{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;
+  background:none;border:0;padding:15px 2px;font-family:inherit;color:inherit;cursor:pointer;text-align:left;
+  -webkit-tap-highlight-color:transparent}
+.wish-name{font-size:15.5px;letter-spacing:.14em}
+.wish-mark{font-size:11px;color:var(--muted);letter-spacing:.2em}
+.wish-body{max-height:0;overflow:hidden;transition:max-height .65s cubic-bezier(.22,.61,.36,1)}
+.wish-body p{margin:0 0 18px;padding:0 2px;text-align:justify;color:var(--ink2);font-size:15.5px;line-height:2}
+
+/* 十六炷（第一版蜡烛：纸蜡身、蜡芯、大焰，熄后升烟） */
+.candle-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin:22px auto 8px;
+  max-width:352px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.candle{position:relative;width:36px;height:86px;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.candle .stick{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);width:11px;height:48px;border-radius:5px;
+  background:linear-gradient(180deg,#fffdf6,#eee6d3);box-shadow:inset 0 0 0 1px rgba(110,132,142,.28)}
+.candle .wick{position:absolute;left:50%;bottom:53px;transform:translateX(-50%);width:2px;height:6px;background:#7d6a55;border-radius:2px}
+.candle .flame{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);width:11px;height:17px;
+  border-radius:50% 50% 45% 45%/62% 62% 38% 38%;
+  background:radial-gradient(circle at 50% 68%,#fff8cf 0 28%,#ffd166 62%,rgba(255,150,40,.1) 100%);
+  animation:flick 1.5s ease-in-out infinite;transition:opacity .45s,transform .45s}
+@keyframes flick{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.08,.96)}}
+.candle.out .flame{opacity:0;transform:translateX(-50%) scale(.3)}
+.candle .smoke{position:absolute;left:50%;bottom:58px;width:2px;height:14px;border-radius:2px;
+  background:linear-gradient(to top,rgba(140,150,155,.5),transparent);opacity:0}
+.candle.out .smoke{animation:smoke 1.8s ease forwards}
+@keyframes smoke{0%{opacity:0;transform:translate(-50%,0)}20%{opacity:.7}100%{opacity:0;transform:translate(-50%,-26px)}}
+
+/* 三祝三愿 */
+.reveal{margin:28px 0 0;padding:4px 16px 16px;border:1px solid var(--line);background:#fbf9f2;
+  opacity:0;transition:opacity 1.2s ease}
+.reveal.show{opacity:1}
+.reveal h3{display:flex;align-items:center;gap:14px;justify-content:center;font-weight:400;font-size:13px;
+  letter-spacing:.5em;text-indent:.5em;color:var(--seal);margin:18px 0 4px}
+.reveal h3::before,.reveal h3::after{content:"";height:1px;flex:1;background:var(--line)}
+.reveal .cols{display:grid;grid-template-columns:1fr;gap:0 26px}
+@media(min-width:740px){.reveal .cols{grid-template-columns:1fr 1fr}}
+.reveal p{margin:9px 0;font-size:14.5px;color:var(--ink2)}
+
+/* 页尾 */
+footer{margin:54px 0 4px;text-align:center}
+.sign{font-family:var(--latin);font-size:11.5px;color:var(--muted);letter-spacing:.42em;text-indent:.42em;margin:0 0 18px}
+.seal{width:58px;height:58px;display:block;margin:0 auto}
+
+/* 音乐 */
+.music-btn{position:fixed;right:12px;bottom:14px;z-index:50;font-family:inherit;font-size:12.5px;
+  letter-spacing:.3em;text-indent:.3em;color:#4a4f55;background:rgba(251,249,242,.9);
+  border:1px solid var(--line2);padding:7px 11px 7px 14px;cursor:pointer}
+.music-btn:active{transform:translateY(1px)}
+
+@media (prefers-reduced-motion: reduce){
+  .petal,.ch{animation:none!important;opacity:1!important;transform:none!important}
+  .vpart p{opacity:1!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="petals" id="petals" aria-hidden="true"></div>
+<svg class="hills" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <path d="M0 238 L250 118 L430 202 L624 92 L846 212 L1016 142 L1200 228" fill="none" stroke="#5b6b74" stroke-opacity=".15" stroke-width="1.2"/>
+  <path d="M0 252 L206 188 L388 244 L566 176 L768 250 L986 194 L1200 250" fill="none" stroke="#5b6b74" stroke-opacity=".09" stroke-width="1"/>
+  <path d="M0 262 Q300 254 600 262 T1200 262" fill="none" stroke="#5b6b74" stroke-opacity=".10" stroke-width="1"/>
+</svg>
+
+<main>
+  <p class="topline">晴诞辰赠，祝晴快乐</p>
+  <p class="handle">{LwSLoVeRfe}</p>
+
+  <h1 class="maintitle" aria-label="新甫之柏，汶水之流">
+    <span class="mtcol">新甫之柏</span>
+    <span class="mtcol">汶水之流</span>
+  </h1>
+  <p class="dates">丙午之秋 · 二〇二六年十月五日</p>
+
+  <section class="cards">
+
+    <article class="vol" id="vol1">
+      <button class="vol-head" type="button" aria-expanded="false">
+        <span class="ctoggle">展卷</span>
+        <span class="cgroup">
+          <span class="vtitle">素秋初度序</span>
+          <span class="vsub">丙午秋日<br>XiaozLuciferWasSuper 谨序</span>
+        </span>
+      </button>
+      <div class="fold-body">
+        <div class="fold-inner">
+
+          <div class="pbar"><span>其一</span></div>
+          <div class="vpart">
+            <p>丙午之秋，清风戒寒，篱菊初黄，庭梧微落。今日为小晴初度之辰。余囊无长物，既无金玉之赠，亦乏锦绣之词，乃缀俚语一篇，聊以致祝。</p>
+            <p>小晴者，王氏女也，名晴，新泰人，傻福。与余同受业于邑庠北舍，同案而读，同灯而书。相识未久，而意气相投；余以知己待之，不徒同窗之谊也。</p>
+            <p>孔子曰：「益者三友：友直，友谅，友多闻。」余观君之于余，三者盖尝兼之：余有过，君直言之而不讳；余有约，君必践之而不渝。</p>
+          </div>
+
+          <div class="pbar"><span>其二</span></div>
+          <div class="vpart">
+            <p>今日初度，君又添一岁矣。古有华封三祝，余无华封之贤，愿仿三祝而易其目，以三事为君寿：一曰身安，四时无病，眉目常舒；二曰学进，所诵皆通，所试皆捷；三曰心安，纵逢风雨，不损其乐。</p>
+            <p>人生聚散，如云卷舒。他年升学异路，握手言别，未知复如今日之密否？然相与之意，不在朝暮相见，而在久不相忘。此后岁月方长，愿各勉所学，各遂其志；愿君珍重此谊，余亦不敢忘也。</p>
+            <p class="song">颂曰：新甫之柏，岁寒不凋。汶水之流，昼夜滔滔。愿君如之，学与岁长。他年重见，其乐未央。</p>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+    <article class="vol" id="vol2">
+      <button class="vol-head" type="button" aria-expanded="false">
+        <span class="ctoggle">展卷</span>
+        <span class="cgroup">
+          <span class="vtitle">友人诞辰赠文</span>
+          <span class="vsub">并序 · 依《天保》设五愿</span>
+        </span>
+      </button>
+      <div class="fold-body">
+        <div class="fold-inner">
+
+          <div class="pbar"><span>其一</span></div>
+          <div class="vpart">
+            <p class="pre">序曰：人生岁有初度之辰，朋友于是有赠言之礼。古之赠人者曰：「赠人以言，重于金石珠玉。」余于君初度，无金石珠玉之赠，而有一言之献。物有时而敝，言可以久；故余舍物而用言焉。言者，心之声也；以声传心，虽远犹迩。</p>
+            <p>丙午之秋，清风戒寒；篱菊初黄，庭梧微落；夜来微霜，晨光清朗；天宇澄霁，秋气高凉。今日为小晴初度之辰。余与君同受业于邑庠北舍，同案而读，同灯而书，蒙以知己相待；愧无金玉之赠，亦乏锦绣之词，乃缀俚语一篇，以当祝辞，而系之以颂。</p>
+            <p>《诗·天保》之篇曰：「如山如阜，如冈如陵，如川之方至，以莫不增；如月之恒，如日之升，如南山之寿，不骞不崩；如松柏之茂，无不尔或承。」</p>
+          </div>
+
+          <div class="pbar"><span>其二</span></div>
+          <div class="vpart">
+            <p>《诗》之祝君，美而不浮、久而不倦，有如此者。诗之六义，颂居其一，盖美盛德之形容；今者君之初度，余不敢以颂自居，惟效祝者之意，为君设五愿。盖祝者，愿之至也；颂者，言之至也。愿而能久，言之能行，斯为真祝。愿君受之，愿自今以往，行之而无倦。</p>
+            <p>一愿君心如月之恒。月不以盈亏改其明，君勿以得失易其守。静则清明在躬，动则从容中节；持身有度，养气有方；喜不过分，怒不留胸；闻誉不骄，闻毁不沮；忧患至而志不乱，纷华过而目不移；不急不躁，不忮不求。如是，则心常安；心常安，则神常定；神常定，则福自至。</p>
+            <p>二愿君学如日之升。朝诵夕研，日新不已；所读之书，皆通其义；所试之题，皆应其手；疑难纷至，一剖即明；文义幽微，一索即得；温故知新，日有课程；循序而进，不求速成；日有程课，月有进境。</p>
+          </div>
+
+          <div class="pbar"><span>其三</span></div>
+          <div class="vpart">
+            <p>他年升于上庠，所治者皆所好，所成者皆所思；同辈慕之，师长称之；由是而进，如日方中，其光愈盛。</p>
+            <p>三愿君福如川之方至。源泉混混，昼夜不舍；涓涓者不竭，浩浩者不溢。愿君之福绵绵而不绝，愿君之路坦坦而无阻；所遇皆顺，所求皆遂；求而未得，不为君累；欲而未成，不夺君欢；居常无事，遇喜不惊。</p>
+            <p>四愿君德如松柏之茂。岁寒不凋，其质坚也；风霜屡至，其色茂也。愿君存心忠厚，行己有耻；见善则迁，有过则改；与善人游，如入芝兰之室；闻正言喜，若饮甘泉；见人之善，若己有之；人之有急，若己当之；与物无竞，于人无怨。日进而不自知，德盛而不自矜。</p>
+          </div>
+
+          <div class="pbar"><span>其四</span></div>
+          <div class="vpart">
+            <p>五愿君康宁如南山之久。四时无恙，百疾不侵；起居有节，饮食有常；晨兴有清爽之气，夜寝无颠倒之梦；眉目常舒，精神日旺；读书有暇，游息有时；行无所碍，寝无所忧；岁时或异，此康不衰。身安而心亦安，福厚而年亦厚。</p>
+            <p>凡此五愿，一言以蔽之，曰「以莫不增」而已。愿君自今日始，日日有增，岁岁有增：学日增，行日增，乐日增，福日增。寒暑屡迁，此增不改；岁月屡易，此增不穷。凡君所愿，皆如其意；凡君所行，皆得其时。门庭安顺，尊长康宁，师友皆好，事事如意。愿年年此日，皆有此欢；愿岁岁今辰，皆如此日。</p>
+          </div>
+
+          <div class="pbar"><span>其五</span></div>
+          <div class="vpart">
+            <p>余闻之：祝之大者，不在一时，而在长久；祝之善者，不在奇巧，而在平常。身不安则福无所附，学不进则日无所积，不能久则百美皆为虚文。故余之祝君，惟以安也、进也、久也为纲，愿君勿以为浅而忽之。</p>
+            <p>此外复有三愿：一愿君常有好书在手，如对良朋；二愿君常有好景入眼，如逢嘉日；三愿君常有好言在耳，如沐春风。余与君以文会友，以友辅仁；聚散虽无常，此心不相负。他年升学异路，各赴其程，愿有喜则相告，有疑则相质；一纸之书，可以通问；山川虽隔，不改此心；守此勿失，久而愈信，远而愈亲。</p>
+            <p class="song">颂曰：新甫之柏，四时常青。汶水之流，昼夜不停。风霜虽厉，不改其荣。愿君如之，学与日增。身康心泰，百福咸宁。此愿不移，如冈如陵。他年重见，共话平生。</p>
+          </div>
+
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="sec"><span>五愿</span></div>
+  <p class="hint" style="margin:0 0 12px">点开看该愿全文</p>
+
+  <section class="wishes">
+    <div class="wish">
+      <button class="wish-head" type="button"><span class="wish-name">一愿 · 心如月之恒</span><span class="wish-mark">阅</span></button>
+      <div class="wish-body"><p>一愿君心如月之恒。月不以盈亏改其明，君勿以得失易其守。静则清明在躬，动则从容中节；持身有度，养气有方；喜不过分，怒不留胸；闻誉不骄，闻毁不沮；忧患至而志不乱，纷华过而目不移；不急不躁，不忮不求。如是，则心常安；心常安，则神常定；神常定，则福自至。</p></div>
+    </div>
+    <div class="wish">
+      <button class="wish-head" type="button"><span class="wish-name">二愿 · 学如日之升</span><span class="wish-mark">阅</span></button>
+      <div class="wish-body"><p>二愿君学如日之升。朝诵夕研，日新不已；所读之书，皆通其义；所试之题，皆应其手；疑难纷至，一剖即明；文义幽微，一索即得；温故知新，日有课程；循序而进，不求速成；日有程课，月有进境。他年升于上庠，所治者皆所好，所成者皆所思；同辈慕之，师长称之；由是而进，如日方中，其光愈盛。</p></div>
+    </div>
+    <div class="wish">
+      <button class="wish-head" type="button"><span class="wish-name">三愿 · 福如川之方至</span><span class="wish-mark">阅</span></button>
+      <div class="wish-body"><p>三愿君福如川之方至。源泉混混，昼夜不舍；涓涓者不竭，浩浩者不溢。愿君之福绵绵而不绝，愿君之路坦坦而无阻；所遇皆顺，所求皆遂；求而未得，不为君累；欲而未成，不夺君欢；居常无事，遇喜不惊。</p></div>
+    </div>
+    <div class="wish">
+      <button class="wish-head" type="button"><span class="wish-name">四愿 · 德如松柏之茂</span><span class="wish-mark">阅</span></button>
+      <div class="wish-body"><p>四愿君德如松柏之茂。岁寒不凋，其质坚也；风霜屡至，其色茂也。愿君存心忠厚，行己有耻；见善则迁，有过则改；与善人游，如入芝兰之室；闻正言喜，若饮甘泉；见人之善，若己有之；人之有急，若己当之；与物无竞，于人无怨。日进而不自知，德盛而不自矜。</p></div>
+    </div>
+    <div class="wish">
+      <button class="wish-head" type="button"><span class="wish-name">五愿 · 康宁如南山之久</span><span class="wish-mark">阅</span></button>
+      <div class="wish-body"><p>五愿君康宁如南山之久。四时无恙，百疾不侵；起居有节，饮食有常；晨兴有清爽之气，夜寝无颠倒之梦；眉目常舒，精神日旺；读书有暇，游息有时；行无所碍，寝无所忧；岁时或异，此康不衰。身安而心亦安，福厚而年亦厚。</p></div>
+    </div>
+  </section>
+
+  <div class="sec"><span>十六炷</span></div>
+  <p class="hint" id="candleHint" style="margin:0 0 4px">点烛，替你许愿</p>
+  <div class="candle-grid" id="candleGrid"></div>
+
+  <div class="reveal" id="reveal">
+    <div class="cols">
+      <div>
+        <h3>三祝</h3>
+        <p class="type" data-delay="0">一曰身安：四时无病，眉目常舒。</p>
+        <p class="type" data-delay="280">二曰学进：所诵皆通，所试皆捷。</p>
+        <p class="type" data-delay="560">三曰心安：纵逢风雨，不损其乐。</p>
+      </div>
+      <div>
+        <h3>三愿</h3>
+        <p class="type" data-delay="860">一愿好书在手，如对良朋。</p>
+        <p class="type" data-delay="1140">二愿好景入眼，如逢嘉日。</p>
+        <p class="type" data-delay="1420">三愿好言在耳，如沐春风。</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="sign" id="sign">LwSnotLoVeRfE</p>
+    <svg class="seal" viewBox="0 0 72 72" role="img" aria-label="小晴初度">
+      <defs>
+        <filter id="rough">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <rect x="5" y="5" width="62" height="62" rx="2" fill="#9e2f28" filter="url(#rough)"/>
+      <rect x="10" y="10" width="52" height="52" rx="1" fill="none" stroke="#fdfbf6" stroke-opacity=".72" stroke-width="1.6"/>
+      <g fill="#fdfbf6" font-family="LXGW WenKai,Kaiti SC,KaiTi,serif" font-size="21" text-anchor="middle">
+        <text x="25" y="35">小</text>
+        <text x="49" y="35">晴</text>
+        <text x="25" y="61">初</text>
+        <text x="49" y="61">度</text>
+      </g>
+    </svg>
+  </footer>
+</main>
+
+<button class="music-btn" id="musicBtn" type="button" aria-pressed="false">听琴</button>
+
+<noscript><style>.fold-body,.wish-body{max-height:none!important}.vpart p{opacity:1!important}.reveal{opacity:1!important}</style></noscript>
+
+<script>
+(function(){
+"use strict";
+var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* 逐字 */
+function typeChars(el, step){
+  if(!el || el.dataset.typed) return;
+  el.dataset.typed = '1';
+  var txt = el.textContent;
+  el.textContent = '';
+  var frag = document.createDocumentFragment();
+  Array.from(txt).forEach(function(ch,i){
+    var s = document.createElement('span');
+    s.className = 'ch';
+    s.textContent = ch;
+    s.style.animationDelay = (i * (step || 70)) + 'ms';
+    frag.appendChild(s);
+  });
+  el.appendChild(frag);
+}
+
+/* 落英，八片，极轻 */
+(function(){
+  var box = document.getElementById('petals');
+  if(!box || reduce) return;
+  for(var i=0;i<8;i++){
+    var p = document.createElement('i');
+    p.className = 'petal';
+    var w = 5 + Math.random()*6;
+    p.style.width = w + 'px';
+    p.style.height = (w*0.78) + 'px';
+    p.style.left = (Math.random()*100) + 'vw';
+    p.style.animationDuration = (14 + Math.random()*10) + 's';
+    p.style.animationDelay = (-Math.random()*18) + 's';
+    p.style.setProperty('--dx', ((Math.random()*140)-70) + 'px');
+    if(i % 3 === 2) p.style.background = 'rgba(90,100,108,.16)';
+    box.appendChild(p);
+  }
+})();
+
+/* 点触：一圈细金涟漪 */
+(function(){
+  var last = 0;
+  document.addEventListener('pointerdown', function(e){
+    var t = Date.now(); if(t - last < 160) return; last = t;
+    var r = document.createElement('span');
+    r.className = 'spark';
+    r.style.left = e.clientX + 'px';
+    r.style.top = e.clientY + 'px';
+    document.body.appendChild(r);
+    var a = r.animate(
+      [{transform:'translate(-50%,-50%) scale(.35)', opacity:.5},
+       {transform:'translate(-50%,-50%) scale(3.2)', opacity:0}],
+      {duration:850, easing:'cubic-bezier(.2,.7,.3,1)'}
+    );
+    if(a) a.onfinish = function(){ r.remove(); };
+    else setTimeout(function(){ r.remove(); }, 900);
+  }, {passive:true});
+})();
+
+/* 展卷／合卷 */
+function wireBlock(block, headSel, bodySel, markSel, openText, closeText, onOpen){
+  var head = block.querySelector(headSel);
+  var body = block.querySelector(bodySel);
+  var inner = body ? body.firstElementChild : null;
+  var mark = markSel ? block.querySelector(markSel) : null;
+  if(!head || !body || !inner) return;
+  head.addEventListener('click', function(){
+    var opening = !block.classList.contains('open');
+    if(opening){
+      block.classList.add('open');
+      body.style.maxHeight = inner.scrollHeight + 'px';
+      setTimeout(function(){ if(block.classList.contains('open')) body.style.maxHeight = 'none'; }, 820);
+      if(mark) mark.textContent = closeText;
+      if(onOpen) onOpen(inner);
+    } else {
+      body.style.maxHeight = inner.scrollHeight + 'px';
+      requestAnimationFrame(function(){ body.style.maxHeight = '0px'; });
+      block.classList.remove('open');
+      if(mark) mark.textContent = openText;
+    }
+  });
+}
+
+/* 竖栏自适应：按屏宽微调字号，务使一段不出横溢 */
+function fitParts(scope){
+  var parts = (scope || document).querySelectorAll('.vpart');
+  Array.prototype.forEach.call(parts, function(el){
+    if(!el.clientWidth) return;
+    var fs = (window.innerWidth >= 740) ? 17 : 16;
+    el.style.fontSize = fs + 'px';
+    var guard = 0;
+    while(el.scrollWidth > el.clientWidth + 1 && fs > 12.4 && guard < 60){
+      fs -= 0.4;
+      el.style.fontSize = fs + 'px';
+      guard++;
+    }
+    el.style.setProperty('--pitch', (Math.round(fs * 1.62 * 10) / 10) + 'px');
+  });
+}
+
+Array.prototype.forEach.call(document.querySelectorAll('.vol'), function(vol){
+  wireBlock(vol, '.vol-head', '.fold-body', '.ctoggle', '展卷', '合卷', function(inner){
+    fitParts(inner);
+    setTimeout(function(){ fitParts(inner); }, 500);
+  });
+});
+var rt = null;
+window.addEventListener('resize', function(){
+  if(rt) clearTimeout(rt);
+  rt = setTimeout(function(){ fitParts(document); }, 200);
+});
+if(document.fonts && document.fonts.ready && document.fonts.ready.then){
+  document.fonts.ready.then(function(){ fitParts(document); });
+}
+setTimeout(function(){ fitParts(document); }, 900);
+
+/* 五愿 */
+Array.prototype.forEach.call(document.querySelectorAll('.wish'), function(w){
+  wireBlock(w, '.wish-head', '.wish-body', '.wish-mark', '阅', '收', null);
+});
+
+/* 十六炷（第一版蜡烛） */
+var grid = document.getElementById('candleGrid');
+var TOTAL = 16, outCount = 0;
+function showReveal(){
+  var hint = document.getElementById('candleHint');
+  if(hint) hint.textContent = '烛尽 · 三祝三愿，具在下方';
+  var r = document.getElementById('reveal');
+  if(!r) return;
+  r.classList.add('show');
+  Array.prototype.forEach.call(r.querySelectorAll('.type'), function(el){
+    var d = parseInt(el.getAttribute('data-delay') || '0', 10);
+    setTimeout(function(){ typeChars(el, 52); }, d + 260);
+  });
+}
+if(grid){
+  for(var ci=0; ci<TOTAL; ci++){
+    (function(){
+      var b = document.createElement('button');
+      b.className = 'candle';
+      b.type = 'button';
+      b.setAttribute('aria-label', '第' + (ci+1) + '支烛');
+      b.innerHTML = '<span class="stick"></span><span class="wick"></span><span class="flame"></span><span class="smoke"></span>';
+      b.addEventListener('click', function(){
+        if(b.classList.contains('out')) return;
+        b.classList.add('out');
+        outCount++;
+        if(outCount === TOTAL) setTimeout(showReveal, 700);
+      });
+      grid.appendChild(b);
+    })();
+  }
+}
+
+/* 合成琴音（无音频文件） */
+var btn = document.getElementById('musicBtn');
+var actx = null, master = null, mtimer = null, midx = 2, playing = false;
+var scale = [293.66, 329.63, 369.99, 440.00, 493.88, 587.33, 659.25];
+function playNote(){
+  if(!actx) return;
+  var t = actx.currentTime + 0.02;
+  var o = actx.createOscillator();
+  var g = actx.createGain();
+  o.type = 'triangle';
+  o.frequency.value = scale[midx];
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.15, t + 0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 2.1);
+  o.connect(g); g.connect(master);
+  o.start(t); o.stop(t + 2.2);
+  var o2 = actx.createOscillator();
+  var g2 = actx.createGain();
+  o2.type = 'sine';
+  o2.frequency.value = scale[midx] * 2.005;
+  g2.gain.setValueAtTime(0.0001, t);
+  g2.gain.exponentialRampToValueAtTime(0.03, t + 0.02);
+  g2.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+  o2.connect(g2); g2.connect(master);
+  o2.start(t); o2.stop(t + 1.4);
+  var step = (Math.random() < 0.5 ? -1 : 1) * (Math.random() < 0.3 ? 2 : 1);
+  midx = Math.min(scale.length - 1, Math.max(0, midx + step));
+}
+function startMusic(){
+  if(!actx){
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return;
+    actx = new AC();
+    master = actx.createGain();
+    master.gain.value = 0.0001;
+    master.connect(actx.destination);
+  }
+  if(actx.state === 'suspended') actx.resume();
+  master.gain.cancelScheduledValues(actx.currentTime);
+  master.gain.setValueAtTime(0.0001, actx.currentTime);
+  master.gain.exponentialRampToValueAtTime(0.85, actx.currentTime + 1.2);
+  midx = 2;
+  playNote();
+  mtimer = setInterval(playNote, 1750);
+  playing = true;
+  if(btn){ btn.textContent = '止乐'; btn.setAttribute('aria-pressed', 'true'); }
+}
+function stopMusic(){
+  if(!actx) return;
+  if(mtimer){ clearInterval(mtimer); mtimer = null; }
+  master.gain.cancelScheduledValues(actx.currentTime);
+  master.gain.setValueAtTime(Math.max(master.gain.value || 0.0001, 0.0001), actx.currentTime);
+  master.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.6);
+  playing = false;
+  if(btn){ btn.textContent = '听琴'; btn.setAttribute('aria-pressed', 'false'); }
+}
+if(btn){
+  btn.addEventListener('click', function(){ if(playing) stopMusic(); else startMusic(); });
+}
+
+/* 主标题两列、两颂、页尾：逐字 */
+Array.prototype.forEach.call(document.querySelectorAll('.mtcol'), function(el, i){
+  setTimeout(function(){ typeChars(el, 200); }, i * 900);
+});
+(function(){
+  var els = document.querySelectorAll('.song, #sign');
+  if(!('IntersectionObserver' in window)){
+    Array.prototype.forEach.call(els, function(el){ typeChars(el, 60); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ typeChars(en.target, 60); io.unobserve(en.target); }
+    });
+  }, {threshold: 0.45});
+  Array.prototype.forEach.call(els, function(el){ io.observe(el); });
+})();
+
+})();
+</script>
+</body>
+</html>
